@@ -8,7 +8,7 @@ module Api
           login!
           render json: { logged_in: true, user: @user }
         else
-          render json: { status: 401, errors: ["no such user", "verify credentials and try again or signup"] }
+          render json: { status: 401, errors: ["Invalid username or password"] }
         end
       end
 
@@ -22,7 +22,7 @@ module Api
 
       def destroy
         logout!
-        render json: { status: 200, logged_out: true }
+        render json: { status: 200, logged_in: false, user: {} }
       end
 
       private
